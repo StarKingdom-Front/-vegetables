@@ -39,7 +39,7 @@ tabsParent.addEventListener('click', (event) => {
 
 /////////////timer
     
-const deadline = '2021-09-30';
+const deadline = '2022-09-30';
 
 function getTimeRemaining(endtime) {
     let days, hours, minutes, seconds;
