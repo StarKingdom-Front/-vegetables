@@ -118,14 +118,28 @@ const modal = document.querySelector('.modal');
         });
     });
 
-    closeCloseBtn.addEventListener('click', () => {
+    function closeModal() {
         modal.classList.add('hide');
         modal.classList.remove('show');
         // modal.classList.toggle('show');
         document.body.style.overflow = '';
+    }
+
+    closeCloseBtn.addEventListener('click', closeModal);
+
+    /////закрывать окно на esc или тыкнуть в любое место
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
     });
 
-
+    document.addEventListener('keydown', (e) => {
+        if (e.code === 'Escape' && modal.classList.contains('show')) {
+            closeModal();
+        }
+    });
 
 
 });
