@@ -108,26 +108,28 @@ const openTrigger = document.querySelectorAll('[data-modal]');
 const closeCloseBtn = document.querySelector('[data-close]');
 const modal = document.querySelector('.modal');
 
+    function openModal() {
+    modal.classList.add('show');   
+    modal.classList.remove('hide');
+    // modal.classList.toggle('show'); вариант c toggle 
+    document.body.style.overflow = 'hidden';
+    clearInterval(modalTimerId);
+    }
 
     openTrigger.forEach(btn => {
-        btn.addEventListener('click', () => {
-            modal.classList.add('show');   
-            modal.classList.remove('hide');
-            // modal.classList.toggle('show'); вариант c toggle 
-            document.body.style.overflow = 'hidden';
-        });
+        btn.addEventListener('click', openModal);
     });
 
-    function closeModal() {
-        modal.classList.add('hide');
-        modal.classList.remove('show');
-        // modal.classList.toggle('show');
-        document.body.style.overflow = '';
-    }
+function closeModal() {
+    modal.classList.add('hide');
+    modal.classList.remove('show');
+    // modal.classList.toggle('show');
+    document.body.style.overflow = '';
+}
 
     closeCloseBtn.addEventListener('click', closeModal);
 
-    /////закрывать окно на esc или тыкнуть в любое место
+/////закрывать окно на esc или тыкнуть в любое место
 
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
@@ -141,6 +143,18 @@ const modal = document.querySelector('.modal');
         }
     });
 
+    //////////////окно появляется через 5 секунд
+    const modalTimerId = setTimeout(openModal, 5000);
+
+    ///////////////////окно появляется когда доскролит до конца
+    function showModalByScroll() {
+        if (window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 1) {
+            openModal();
+            window.removeEventListener('scroll', showModalByScroll);
+        }
+    }
+
+    window.addEventListener('scroll', showModalByScroll);
 
 });
 
