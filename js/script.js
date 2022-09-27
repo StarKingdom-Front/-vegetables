@@ -102,7 +102,34 @@ function setClock(selector, endtime) {
 
 setClock('.timer', deadline);
 
+////modal 
+
+const openTrigger = document.querySelectorAll('[data-modal]');
+const closeCloseBtn = document.querySelector('[data-close]');
+const modal = document.querySelector('.modal');
+
+
+    openTrigger.forEach(btn => {
+        btn.addEventListener('click', () => {
+            modal.classList.add('show');   
+            modal.classList.remove('hide');
+            // modal.classList.toggle('show'); вариант c toggle 
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    closeCloseBtn.addEventListener('click', () => {
+        modal.classList.add('hide');
+        modal.classList.remove('show');
+        // modal.classList.toggle('show');
+        document.body.style.overflow = '';
+    });
+
+
+
+
 });
+
 
 
 
