@@ -157,9 +157,3 @@ function closeModal() {
     window.addEventListener('scroll', showModalByScroll);
 
 });
-
-
-
-
-
-
